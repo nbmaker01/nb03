@@ -1,2 +1,78 @@
-/
-/
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>WebXR A-Frame GLB Example</title>
+  <!-- A-Frame 라이브러리 -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- GLTF(.glb) 모델 로드를 위한 컴포넌트 -->
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.2.0/dist/aframe-extras.loaders.min.js"></script>
+</head>
+
+<body>
+  <!-- A-Frame 씬 시작 -->
+  <a-scene>
+
+    <!-- ===================== -->
+    <!-- 카메라 + 컨트롤 설정 -->
+    <!-- ===================== -->
+    <!-- wasd-controls: 키보드 이동 (PC)
+         look-controls: 마우스 시점 이동 -->
+    <a-entity id="rig" position="0 1.6 5">
+      <a-camera wasd-controls look-controls></a-camera>
+    </a-entity>
+
+    <!-- ===================== -->
+    <!-- VR 컨트롤러 설정 -->
+    <!-- ===================== -->
+    <!-- 왼손 / 오른손 컨트롤러 -->
+    <a-entity laser-controls="hand: left"></a-entity>
+    <a-entity laser-controls="hand: right"></a-entity>
+
+    <!-- ===================== -->
+    <!-- 하늘 (Sky) -->
+    <!-- ===================== -->
+    <!-- 색상으로 배경 설정 -->
+    <a-sky color="#87CEEB"></a-sky>
+
+    <!-- ===================== -->
+    <!-- 바닥 (Ground) -->
+    <!-- ===================== -->
+    <!-- 넓은 평면을 만들어 바닥처럼 사용 -->
+    <a-plane 
+      rotation="-90 0 0" 
+      width="50" 
+      height="50" 
+      color="#7BC8A4">
+    </a-plane>
+
+    <!-- ===================== -->
+    <!-- 조명 (Light) -->
+    <!-- ===================== -->
+    <!-- 전체 밝기 조절 -->
+    <a-light type="ambient" color="#ffffff" intensity="0.6"></a-light>
+
+    <!-- 방향성 조명 (태양 느낌) -->
+    <a-light 
+      type="directional" 
+      position="5 10 7" 
+      intensity="0.8">
+    </a-light>
+
+    <!-- ===================== -->
+    <!-- 3D 모델 (.glb) -->
+    <!-- ===================== -->
+    <!-- gltf-model: .glb 파일 로드
+         position: 앞쪽 중앙
+         scale: 크게
+         rotation: 약간 회전 -->
+    <a-entity 
+      gltf-model="model.glb"
+      position="0 0 -3"
+      scale="2 2 2"
+      rotation="0 30 0">
+    </a-entity>
+
+  </a-scene>
+</body>
+</html>
